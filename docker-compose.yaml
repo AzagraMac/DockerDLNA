@@ -1,0 +1,21 @@
+---
+version: '3.6'
+
+services:
+  dlna:
+    container_name: dlna
+    image: vladgh/minidlna
+    restart: always
+    network_mode: host
+    ports:
+      - 8200:8200
+    volumes:
+      - /root/docker/dlna_server:/minidlna/cache
+      - /path/to/timeCapsule/Music:/media/audio
+      - /path/to/timeCapsule/Movies:/media/video
+    environment: 
+      - TZ=Europe/Madrid
+      - MINIDLNA_MEDIA_DIR_1=A,/media/audio
+      - MINIDLNA_MEDIA_DIR_2=V,/media/video
+      - MINIDLNA_FRIENDLY_NAME=DockerDLNA
+
